@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { HiSearch, HiBell, HiChat, HiChevronDown } from "react-icons/hi"
+import { LoginButton } from "./"
 
 const Header = () => {
 
@@ -19,16 +20,21 @@ const Header = () => {
 		</div>
 		<div className='flex items-center gap-3 bg-[#e9e9e9] p-3 rounded-full w-full'>
 			<HiSearch className='text-gray-600' />
-			<input type="text" placeholder="search" className='bg-[#e9e9e9] active:border-0 w-full focus:outline-none' />
+			<input type="text" placeholder="search" className='bg-transparent active:border-0 w-full focus:outline-none' />
 		</div>
 		<div className='flex w-1/4 justify-evenly items-center'>
 			<div className='w-[50px]'>
-				<HiBell className='text-gray-600 text-[50px] cursor-pointer p-3 hover:bg-gray-200 rounded-full' />
+				<HiBell className='text-gray-500 text-[50px] cursor-pointer p-3 hover:bg-gray-200 rounded-full' />
 			</div>
 			<div className='w-[50px]'>
-				<HiChat className='text-gray-600 text-[50px] cursor-pointer p-3 hover:bg-gray-200 rounded-full' />
+				<HiChat className='text-gray-500 text-[50px] cursor-pointer p-3 hover:bg-gray-200 rounded-full' />
 			</div>
-			<Image src='/man.png' alt='user-image' width={50} height={50} className='cursor-pointer p-3 hover:bg-gray-200 rounded-full' />
+
+			<LoginButton />
+
+			{/* <Image src='/man.png' alt='user-image' width={50} height={50} className='cursor-pointer p-3 hover:bg-gray-200 rounded-full' /> */}
+
+
 			<div className='w-[30px]'>
 				<HiChevronDown className='cursor-pointer hover:bg-gray-100 text-[30px] rounded-full' />
 			</div>
