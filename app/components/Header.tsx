@@ -2,29 +2,14 @@
 
 import React from 'react'
 import Image from 'next/image'
-import "./index.css"
 import { HiSearch, HiBell, HiChat, HiChevronDown } from "react-icons/hi"
 import { LoginButton } from "./"
 import { useRouter } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 
-interface HeaderProps {
-	routerPaths: {
-		asPath: string;
-		push: (path: string) => void;
-	}
-}
-
-const Header: React.FC<HeaderProps> = ({ routerPaths }) => {
+const Header = () => {
 
 	const router = useRouter();
-	const navigationItems = [
-		{ path: "/", label: "Home" },
-		{ path: "/explore", label: "Explore"},
-		{ path: "/create", label: "Create" }
-	];
-
-
 	const handleSignOut = async () => {
 		try {
 			signOut();
@@ -44,25 +29,13 @@ const Header: React.FC<HeaderProps> = ({ routerPaths }) => {
 			className='hover:bg-gray-100 p-3 rounded-full cursor-pointer'
 			onClick={() => router.push('/')}	
 		/>
-		{/* <div className='gap-7 flex mr-7'>
-			<button className='bg-black text-white py-3 px-4 rounded-full font-[600]'>Home</button>
+		<div className='gap-7 flex mr-7'>
+			<button className='py-3 px-4 rounded-full font-[600]' onClick={() => router.push('/')}>Home</button>
 			<button className='font-[600]'>Explore</button>
-			<div className='flex items-center'>
+			<div className='flex items-center cursor-pointer' onClick={() => router.push('/pin-builder')}>
 				<button className='font-[600]'>Create</button>
 				<HiChevronDown className='text-[18px]' />
 			</div>
-		</div> */}
-
-
-		<div className='gap-2 flex mr-7'>
-			{/* FIXME: button black bg when active */}
-			{navigationItems.map(item => (
-				<button
-					key={item.path}
-					className={`py-2 px-3 border rounded-full font-[600] ${routerPaths.asPath === item.path ? 'active' : ''}`}
-					onClick={() => router.push(item.path)}
-				>{item.label}</button>
-			))}
 		</div>
 
 		<div className='flex items-center gap-3 bg-[#e9e9e9] p-3 rounded-full w-full'>

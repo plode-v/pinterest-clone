@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation';
 
 interface UserInfoTypes {
     username: string;
@@ -11,6 +12,7 @@ interface UserInfoTypes {
 const UserInfo = ({ userInfo }: { userInfo: UserInfoTypes }) => {
 
     const [username, setUsername] = useState<string[]>([]);
+    const router = useRouter();
 
     useEffect(() => {
         const handleSplitEmail = () => {
@@ -43,7 +45,9 @@ const UserInfo = ({ userInfo }: { userInfo: UserInfoTypes }) => {
             <p className='text-gray-600 font-[300] text-[0.9rem] mt-1'>@{username[0]}</p>
 
             <div className='flex gap-2 mt-4'>
-                <button className='bg-gray-200 px-4 py-3 rounded-full font-[500] text-[0.95rem]'>
+                <button className='bg-gray-200 px-4 py-3 rounded-full font-[500] text-[0.95rem]'
+                    onClick={() => router.push("/pin-builder")}    
+                >
                     Share
                 </button>
                 <button className='bg-gray-200 px-4 py-3 rounded-full font-[500] text-[0.95rem]'>
