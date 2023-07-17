@@ -8,17 +8,13 @@ const LoginButton = () => {
     const { data: session } = useSession()
     const userName = session?.user?.name ?? '';
 
-    if (session) {
-        console.log(session.user)
-        return (
-            <div className='bg-gray-300 rounded-full h-10 w-10 flex items-center justify-center cursor-pointer' onClick={() => signOut()}>
-                <p>{userName[0]}</p>
-            </div>
-        )
-    }
     return (
         <>
-            <button onClick={() => signIn()} className='font-[600]'>Sign in</button>
+            {session ? (
+                <Image src={session.user?.image} alt="profile-picture" height={50} width={50} className='p-3 hover:bg-gray-200 rounded-full cursor-pointer' />
+            ) : (
+                <button className='font-[600]' onClick={() => signIn()}>Login</button>
+            )}
         </>
     )
 }
