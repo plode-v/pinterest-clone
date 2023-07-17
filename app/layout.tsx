@@ -1,3 +1,4 @@
+'use client'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -21,7 +22,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Provider>
-          <Header />
+          <Header routerPaths={{
+            asPath: '',
+            push: function (path: string): void {
+              throw new Error('Function not implemented.')
+            }
+          }} />
           {children}
         </Provider>
       </body>
