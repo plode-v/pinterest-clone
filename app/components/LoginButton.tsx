@@ -3,15 +3,17 @@ import Image from 'next/image';
 import React from 'react'
 import { useSession, signIn, signOut } from "next-auth/react";
 
-const LoginButton: React.FC = () => {
+const LoginButton = () => {
 
     const { data: session } = useSession()
+    const userName = session?.user?.name ?? '';
+
     if (session) {
         console.log(session.user)
         return (
-            <>
-            <Image src='/man.png' alt='user-profile' width={50} height={50} className='cursor-pointer p-3 hover:bg-gray-200 rounded-full' onClick={() => signOut()} />
-            </>
+            <div className='bg-gray-300 rounded-full h-10 w-10 flex items-center justify-center cursor-pointer' onClick={() => signOut()}>
+                <p>{userName[0]}</p>
+            </div>
         )
     }
     return (
