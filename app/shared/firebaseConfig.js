@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
+  // TODO: get firebase api key from pc to mac .env
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "pinterest-clone-56645.firebaseapp.com",
   projectId: "pinterest-clone-56645",
