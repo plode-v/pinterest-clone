@@ -1,10 +1,59 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
+import { UploadImage, UserTag } from "./";
+import { useSession } from 'next-auth/react';
 
 const CreateForm = () => {
+  const { data: session } = useSession();
+  const [title, setTitle] = useState<string>();
+  const [desc, setDesc] = useState<string>();
+  const [link, setLink] = useState<string>();
+  const [file, setFile] = useState();
+
+  const handleSave = () => {
+    console.log(`
+      title: ${title}
+      desc: ${desc}
+      link: ${link}
+    `)
+    console.log(file)
+  }
+
   return (
-    <div className='bg-white rounded-2xl w-1/2 h-4/5 px-16 py-12'>
-      <div className='flex justify-end mb-6'>
-        <button className='bg-[#F0002A] px-3 py-2 text-white rounded-lg'>Save</button>
+    <div className='bg-white rounded-2xl sm:w-1/2 w-full h-min px-10 py-12'>
+      <div className='md:flex justify-end mb-6 flex'>
+        <button className='bg-[#f00128] px-3 py-2 text-white rounded-lg' onClick={handleSave}>Save</button>
+      </div>
+      <div className='flex'>
+        <div className='w-1/3 mx-10'>
+          <UploadImage setFile={(file:any) => setFile(file)} />
+        </div>
+        <div className='flex flex-col'>
+          <input 
+            type="text" 
+            className='border-b border-gray-400 mt-10 text-[35px] focus:border-blue-500 focus:border-b-2 focus:outline-none placeholder:text-[35px] placeholder:font-[700] placeholder:text-gray-500 w-full' 
+            placeholder='Add your title' 
+            onChange={e => setTitle(e.target.value)}
+            />
+          <UserTag />
+          <textarea 
+            rows={2}
+            placeholder='tell everyone what your Pin is about' 
+            className='mt-8 border-b border-gray-400 resize-y focus:outline-none focus:border-b-blue-500 focus:border-b-2 w-full'
+            onChange={e => setDesc(e.target.value)}
+          />
+          <button 
+            className='w-[120px] bg-[#e9e9e9] mt-4 rounded-full h-[50px] font-[500] hover:bg-[#d9d9d9]'
+          >
+            Add alt text
+          </button>
+          <input 
+            type="text" 
+            placeholder='Add destination link' 
+            className='border-b mt-6 p-2 border-b-gray-400 focus:border-b-blue-500 focus:outline-none focus:border-b-2'  
+            onChange={e => setLink(e.target.value)}
+          />
+        </div>
       </div>
     </div>
   )
